@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">Zoo</string>
+
+    <array name="animals">
+        <item>Насекомые</item>
+        <item>Пресмыкающиеся</item>
+        <item>Млекопитающие</item>
+        <item>Птицы</item>
+    </array>
+
+    <array name="bugs">
+        <item>Колорадский</item>
+        <item>Божья коровка</item>
+    </array>
+
+    <array name="snakes">
+        <item>Кобра</item>
+        <item>Гадюка</item>
+    </array>
+
+    <array name="mammalian">
+        <item>Лошадь</item>
+        <item>Кот</item>
+    </array>
+
+    <array name="birds">
+        <item>Орел</item>
+        <item>Синица</item>
+    </array>
+
+
+
+</resources>
