@@ -1,5 +1,7 @@
 package com.st18apps.zoo;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +19,30 @@ public class MainActivity extends AppCompatActivity {
     private ImageView mImageView;
     private ArrayAdapter<String> mArrayAdapter;
 
+    private MyDB myDB;
+
+    //Animals type
+    private String BUGS;
+    private String REPTILE;
+    private String MAMMAL;
+    private String BIRDS;
+
+    //Bugs item
+    private String Coloradskii;
+    private String Yellowsub;
+
+    //Reptiles item
+    private String Kobra;
+    private String Gadyuka;
+
+    //Mammals item
+    private String Horse;
+    private String Cat;
+
+    //Birds
+    private String Hawk;
+    private String Sinica;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,13 +52,18 @@ public class MainActivity extends AppCompatActivity {
         mListView = (ListView) findViewById(R.id.list);
         mImageView = (ImageView) findViewById(R.id.imageView);
 
+        myDB = new MyDB(this);
+
+      //  getDataFromDB();
+        final String []Animals = {BUGS,REPTILE,MAMMAL,BIRDS};
+
         mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 switch (i) {
                     case 0:
-                        mArrayAdapter = new ArrayAdapter<>(getApplicationContext(), R.layout.support_simple_spinner_dropdown_item,
-                                getResources().getStringArray(R.array.bugs));
+                        mArrayAdapter = new ArrayAdapter<>(getApplicationContext(), R.layout.support_simple_spinner_dropdown_item, Animals
+                                );
                         mListView.setAdapter(mArrayAdapter);
                         setImageToListItem();
                         break;
@@ -67,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void setImageToListItem(){
+    public void setImageToListItem() {
         switch (mSpinner.getSelectedItemPosition()) {
 
             case 0:
@@ -136,6 +167,21 @@ public class MainActivity extends AppCompatActivity {
 
 
         }
+
+    }
+
+    public void getDataFromDB() {
+
+        SQLiteDatabase db = myDB.getReadableDatabase();
+
+        String[] columns = {"ID", "TYPE"};
+
+        Cursor cursor = db.query("animals", columns, null, null, null, null, null, null);
+
+        BUGS = cursor.getString(0);
+        REPTILE = cursor.getString(1);;
+        MAMMAL = cursor.getString(2);;
+        BIRDS = cursor.getString(3);;
 
     }
 }
