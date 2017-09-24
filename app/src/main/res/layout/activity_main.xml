@@ -18,6 +18,7 @@
         tools:layout_constraintRight_creator="1"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
+        android:entries="@array/animals"
         tools:layout_constraintLeft_creator="1"/>
 
     <ListView
